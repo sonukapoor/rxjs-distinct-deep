@@ -23,6 +23,8 @@ Using the default `distinctUntilChanged` operator would not recognize `obj1` and
 
 `rxjs-distinct-deep` solves this problem by performing a **deep equality comparison** on objects, arrays, or any nested structures. It allows you to detect changes in deeply nested objects, without relying on external libraries like Lodash.
 
+Simply replace `distinctUntilChanged` with `distinctUntilChangedDeep`, and you're all set for both primitive types and complex objects.
+
 ```typescript
 import { distinctUntilChangedDeep } from "rxjs-distinct-deep";
 import { of } from "rxjs";
