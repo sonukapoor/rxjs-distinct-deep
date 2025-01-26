@@ -1,8 +1,6 @@
-# rxjs-distinct-deep
+# distinct-until-changed-deep
 
 A custom RxJS operator that extends `distinctUntilChanged` with deep equality comparison, allowing you to detect changes in deeply nested objects or structures. This comparison is done **without any external libraries**, such as Lodash, using a custom recursive deep equality function.
-
-⭐ If you find this helpful, please consider giving it a star on GitHub! Your support means a lot.
 
 ## Problem
 
@@ -21,24 +19,16 @@ Using the default `distinctUntilChanged` operator would not recognize `obj1` and
 
 ## Solution
 
-`rxjs-distinct-deep` solves this problem by performing a **deep equality comparison** on objects, arrays, or any nested structures. It allows you to detect changes in deeply nested objects, without relying on external libraries like Lodash.
+`distinct-until-changed-deep` solves this problem by performing a **deep equality comparison** on objects, arrays, or any nested structures. It allows you to detect changes in deeply nested objects, without relying on external libraries like Lodash.
 
 ```typescript
-import { distinctUntilChangedDeep } from "rxjs-distinct-deep";
+import { distinctUntilChangedDeep } from "distinct-until-changed-deep";
 import { of } from "rxjs";
 
 const obj1 = { a: 1, b: { c: 2 } };
 const obj2 = { a: 1, b: { c: 2 } };
-const obj3 = { a: 1, b: { c: 3 } };
 
-of(obj1, obj2, obj3).pipe(distinctUntilChangedDeep()).subscribe(console.log);
-```
-
-**Output**
-
-```bash
-{ a: 1, b: { c: 2 } };
-{ a: 1, b: { c: 3 } };
+of(obj1, obj2).pipe(distinctUntilChangedDeep()).subscribe(console.log); // obj1 and obj2 will be emitted
 ```
 
 ### Features:
@@ -52,20 +42,20 @@ of(obj1, obj2, obj3).pipe(distinctUntilChangedDeep()).subscribe(console.log);
 To install the package, use npm or yarn:
 
 ```bash
-npm install rxjs-distinct-deep
+npm install distinct-until-changed-deep
 ```
 
 Or:
 
 ```bash
-yarn add rxjs-distinct-deep
+yarn add distinct-until-changed-deep
 ```
 
 ## Usage
 
 ```typescript
 import { of } from "rxjs";
-import { distinctUntilChangedDeep } from "rxjs-distinct-deep";
+import { distinctUntilChangedDeep } from "distinct-until-changed-deep";
 
 const obj1 = { a: 1, b: { c: 2 } };
 const obj2 = { a: 1, b: { c: 2 } };
@@ -73,7 +63,7 @@ const obj2 = { a: 1, b: { c: 2 } };
 of(obj1, obj2)
   .pipe(distinctUntilChangedDeep())
   .subscribe((value) => {
-    console.log(value); // Emits obj1 only once
+    console.log(value); // Emits obj1 and obj2 since they are deeply equal
   });
 ```
 
@@ -82,13 +72,13 @@ of(obj1, obj2)
 You can provide a custom comparator function if you'd like to adjust how equality is determined:
 
 ```typescript
-import { distinctUntilChangedDeep } from "rxjs-distinct-deep";
+import { distinctUntilChangedDeep } from "distinct-until-changed-deep";
 
 const customComparator = (a: any, b: any) => a.a === b.a; // Compare only the 'a' property
 
 of({ a: 1 }, { a: 1 }, { a: 2 })
   .pipe(distinctUntilChangedDeep(customComparator))
-  .subscribe(console.log); // Will emit only the first and third values
+  .subscribe(console.log); // Will emit only the first and second values, as 'a' is equal
 ```
 
 ## License

@@ -1,0 +1,49 @@
+{
+  "name": "rxjs-distinct-deep",
+  "version": "1.0.1",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && tsc",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "description": "A custom RxJS operator that extends distinctUntilChanged with deep equality comparison, allowing you to detect changes in deeply nested objects or structures. This comparison is done without any external libraries, such as Lodash, using a custom recursive deep equality function.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "rxjs": "^7.8.1"
+  },
+  "keywords": [
+    "Rx",
+    "RxJS",
+    "ReactiveExtensions",
+    "Observable",
+    "Observables",
+    "distinctUntilChanged",
+    "distinctUntilChangedDeep"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonukapoor/rxjs-distinct-deep.git"
+  },
+  "author": "Sonu Kapoor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sonukapoor/rxjs-distinct-deep/issues"
+  },
+  "homepage": "https://github.com/sonukapoor/rxjs-distinct-deep#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "rxjs": "^7.8.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.3"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  }
+}
